@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Admin</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body onload="init()">
+
+<div class="container">
+  <div class="panel">
+    <div class="topbar">
+      <h1>Administrador</h1>
+      <button class="btn danger" onclick="logout()">Sair</button>
+    </div>
+
+    <div style="padding:20px">
+      <p>Área administrativa (usuário comum não acessa).</p>
+      <p>Aqui você pode expandir para criar cursos e módulos.</p>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+function init(){
+  if(!requireAdmin())return;
+  applyTheme();
+}
+</script>
+</body>
+</html>

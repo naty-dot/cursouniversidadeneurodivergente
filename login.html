@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Login • UniCurso</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body onload="applyTheme()">
+
+<div class="container">
+  <div class="panel">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <h1>UniCurso</h1>
+          <p>Acesso à plataforma</p>
+        </div>
+      </div>
+      <button class="btn" onclick="toggleTheme()">Claro / Escuro</button>
+    </div>
+
+    <div style="padding:20px">
+      <input id="email" placeholder="Email">
+      <br><br>
+      <input id="pass" type="password" placeholder="Senha (UNICURSO)">
+      <br><br>
+      <input id="code" placeholder="Código admin (opcional)">
+      <br><br>
+      <button class="btn primary" onclick="login()">Entrar</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+function login(){
+  const e=email.value.toLowerCase();
+  const p=pass.value;
+  const c=code.value;
+
+  if(p!==LOGIN_PASSWORD){
+    alert("Senha incorreta");
+    return;
+  }
+  if(e===ADMIN_EMAIL && c===ADMIN_CODE){
+    setSession({logged:true,email:e,role:"admin"});
+  }else{
+    setSession({logged:true,email:e,role:"user"});
+  }
+  location.href="dashboard.html";
+}
+</script>
+</body>
+</html>

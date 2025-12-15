@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body onload="init()">
+
+<div class="container">
+  <div class="panel">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <h1>Dashboard</h1>
+      </div>
+      <div>
+        <button class="btn" onclick="toggleTheme()">Claro / Escuro</button>
+        <button class="btn danger" onclick="logout()">Sair</button>
+      </div>
+    </div>
+
+    <div style="padding:20px">
+      <h2>Cursos</h2>
+      <div class="list" id="courses"></div>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+function init(){
+  if(!requireAuth())return;
+  applyTheme();
+  const db=getDB();
+  courses.innerHTML="";
+  db.courses.forEach(c=>{
+    courses.innerHTML+=`
+      <div class="item">
+        <div class="thumb"><img src="${c.cover}"></div>
+        <div>
+          <h3>${c.title}</h3>
+          <p>${c.subtitle}</p>
+          <a class="btn primary" href="course.html?id=${c.id}">Entrar</a>
+        </div>
+      </div>`;
+  });
+}
+</script>
+</body>
+</html>
